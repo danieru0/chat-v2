@@ -1,0 +1,38 @@
+.nav {
+    width: 100px;
+    height: 100vh;
+    background: #293543;
+}
+
+.nav__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__menu--item {
+    border-left: 10px solid transparent;
+}
+
+.nav__menu--item.active {
+    border-left: 10px solid #428ff0;
+}
+
+.nav__menu--item.active .nav__menu--link {
+    background: #171f29;
+    color: #a3a6ad;
+}
+
+.nav__menu--link {
+    text-decoration: none;
+    color: #67707B;
+    display: block;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90px;
+    font-size: 28px;
+    position: relative;
+    left: -5px;
+}

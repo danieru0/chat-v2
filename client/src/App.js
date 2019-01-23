@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
-import openSocket from 'socket.io-client';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import Nav from './components/nav/nav';
+import Chat from './components/chat/chat';
 
-const socket = openSocket('http://localhost:8080/');
+import './App.css';
 
 class App extends Component {
-
-  componentDidMount() {
-    socket.emit('lol', 'eldomordo');
-  }
-
   render() {
     return (
-      <div className="App">
-
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Nav />
+          <Switch>
+              <Route path="/chat" component={Chat}/>
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
