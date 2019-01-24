@@ -1,0 +1,45 @@
+.friends__item {
+    width: 100%;
+    height: 80px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+}
+
+.friends__item.active {
+    background: #f6f7f9;
+}
+
+.friends__item--avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.friends__item--content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.friends__item--nick {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #000000;
+}
+
+.friends__item--lastMessage {
+    color: #d5d7db;
+}
+
+.friends__item--time {
+    color: #d5d7db;
+    font-size: 14px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}

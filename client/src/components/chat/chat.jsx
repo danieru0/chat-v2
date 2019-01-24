@@ -10,7 +10,6 @@ class Chat extends Component {
         <div className="chat">
             <Friends />
             <Messanger />
-            ff
         </div>
     );
   }
