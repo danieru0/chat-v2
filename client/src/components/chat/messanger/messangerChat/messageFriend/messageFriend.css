@@ -14,3 +14,21 @@
     border-radius: 10px;
     border-top-left-radius: 0px;
 }
+
+@media (max-width: 1320px) {
+    .chat__message-friend {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .chat__message-friend {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 400px) {
+    .chat__message-friend {
+        max-width: 100px;
+    }
+}

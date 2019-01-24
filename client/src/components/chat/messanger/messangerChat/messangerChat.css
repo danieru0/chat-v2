@@ -5,7 +5,9 @@
     background-image: url('https://www.transparenttextures.com/patterns/inspiration-geometry.png');
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    flex-wrap: nowrap;
     padding-bottom: 30px;
     box-sizing: border-box;
+    align-items: flex-start;
+    overflow-y: scroll;
 }

@@ -29,6 +29,7 @@
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 5px;
+    white-space: nowrap;
     color: #000000;
 }
 
@@ -42,4 +43,23 @@
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+@media (max-width: 990px) {
+    .friends__item--lastMessage {
+        display: none;
+    }
+}
+
+@media (max-width: 660px) {
+    .friends__item--time {
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.2s;
+    }
+
+    .friends.active .friends__item--time {
+        visibility: visible;
+        opacity: 1;
+    }
 }
