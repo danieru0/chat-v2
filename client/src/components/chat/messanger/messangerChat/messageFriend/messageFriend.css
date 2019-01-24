@@ -1,0 +1,16 @@
+.chat__message-friend {
+    width: auto;
+    max-width: 600px;
+    height: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #fafafa;
+    color: #52555e;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+}

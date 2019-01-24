@@ -6,7 +6,6 @@ import './friendsItem.css';
 class friendsItem extends Component {
   render() {
     let { userNick, userLastMessage, userLastMessageTime, userAvatar, active } = this.props;
-    console.log(this.props);
     return (
         <Link to="/chat/user" className={active ? "friends__item active" : "friends__item"}>
             <img className="friends__item--avatar" alt="" src={userAvatar}></img>

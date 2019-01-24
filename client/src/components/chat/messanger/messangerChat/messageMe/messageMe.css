@@ -1,0 +1,15 @@
+.chat__message-me {
+    width: auto;
+    max-width: 600px;
+    height: auto;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: #428ff0;
+    color: #ffffff;
+    align-self: flex-end;
+    margin-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+}
