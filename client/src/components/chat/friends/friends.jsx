@@ -21,7 +21,7 @@ class Friends extends Component {
     return (
         <>
           <button onClick={this.showFriendsMenu} className={this.state.friendsMenuShow ? "friends__button--mobile active" : "friends__button--mobile"}>
-            <span class="fa fa-arrow-right"></span>
+            <span className="fa fa-arrow-right"></span>
           </button>
           <div className={this.state.friendsMenuShow ? "friends active" : "friends"}>
             <SearchFriends />

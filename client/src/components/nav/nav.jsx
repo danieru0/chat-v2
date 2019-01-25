@@ -9,7 +9,7 @@ class Nav extends Component {
         <nav className="nav">
             <ul className="nav__menu">
                 <li className="nav__menu--item">
-                    <Link to="/users" className="nav__menu--link">
+                    <Link to="/profiles" className="nav__menu--link">
                         <span className="far fa-user"></span>
                     </Link>
                 </li>

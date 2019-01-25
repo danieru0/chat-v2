@@ -8,7 +8,7 @@ class searchFriends extends Component {
         <div className="friends__search">
             <div className="friends__search--wrapper">
                 <span className="fas fa-search friends__search--icon"></span>
-                <input type="text" placeholder="Search your friends" className="friends__search--input"></input>
+                <input type="text" placeholder="Search your chats" className="friends__search--input"></input>
             </div>
         </div>
     );
