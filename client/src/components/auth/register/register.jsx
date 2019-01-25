@@ -1,9 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
+
 import './register.css';
 
 class Register extends Component {
+
+  componentDidMount() {
+    /*axios.post('/api/register', {
+      username: 'bonk',
+      password: 'siema'
+    }).then(resp => {
+      console.log(resp);
+    })*/
+    /*axios.post('/api/login', {
+      username: 'bonk',
+      password: 'siema'
+    }).then(resp => {
+      console.log(resp);
+    })*/
+
+    axios.get('/api/checkToken').then(resp => console.log(resp));
+  }
+
   render() {
     return (
         <div className="register">

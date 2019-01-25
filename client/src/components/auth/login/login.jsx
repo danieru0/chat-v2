@@ -1,9 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import './login.css';
 
 class Login extends Component {
+
+  componentDidMount() {
+    axios.post('/api/login', {
+      username: 'bonk',
+      password: 'siema'
+    }).then(resp => {
+      console.log(resp);
+    })
+  }
+
   render() {
     return (
         <div className="login">
