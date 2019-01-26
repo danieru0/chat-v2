@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './nav.css';
 
 class Nav extends Component {
   render() {
+    if (!this.props.token) {
+        return null;
+    }
     return (
         <nav className="nav">
             <ul className="nav__menu">
@@ -29,4 +33,10 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = state => {
+    return {
+        token: state.auth.token
+    }
+}
+
+export default connect(mapStateToProps, null)(Nav);
