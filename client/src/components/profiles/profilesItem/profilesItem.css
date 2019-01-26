@@ -1,0 +1,36 @@
+.profiles__item {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    outline: none;
+    transition: 0.2s;
+    margin: 20px;
+}
+
+.profiles__item--avatar {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profiles__item--nick {
+    font-weight: bold;
+    font-size: 20px;
+    word-break: break-all;
+    color: #000000;
+}
+
+.profiles__item:focus,
+.profiles__item:hover {
+    background: #ebecf0;
+}
+
+@media (max-width: 330px) {
+    .profiles__item {
+        width: 90%;
+    }
+}
