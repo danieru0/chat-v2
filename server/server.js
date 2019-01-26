@@ -24,7 +24,26 @@ const server = app.listen(process.env.PORT || 8080, () => console.log('Server ru
 const io = socket(server);
 const socketRoute = require('./routes/socket');
 
-io.on('connection', (socket) => {
+const jwt = require('jsonwebtoken');
+const secret = require('./config/secret');
+
+io.use(function(socket, next) {
+    if (socket.request.headers.cookie) {
+        let token = socket.request.headers.cookie.split('=')[1].split(';')[0];
+        if (token) {
+            jwt.verify(token, secret, function(err, decoded) {
+                if (!err) {
+                    socket.username = decoded.username;
+                    next();
+                }
+            });
+        }
+    }
+})
+.on('connection', (socket) => {
+
+    console.log(socket.username);
+    console.log(socket.id);
 
     socket.on('lol', socketRoute.something(socket));
 

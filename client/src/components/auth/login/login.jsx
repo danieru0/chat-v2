@@ -15,13 +15,13 @@ class Login extends Component {
     }
   }
 
-  handleInputChange = (e) => {
+  handleInputChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   }
 
-  handleLoginSubmit = (e) => {
+  handleLoginSubmit = e => {
     e.preventDefault();
     this.props.login({
       username: this.state.username,
@@ -32,7 +32,7 @@ class Login extends Component {
   render() {
     return (
         <div className="login">
-            <form className="login__form">
+            <form onSubmit={this.handleLoginSubmit} className="login__form">
               <div className="login__input--group">
                 <input onChange={this.handleInputChange} className="login__input" name="username" type="text" required></input>
                 <label className="floating-label" htmlFor="username">Your nick</label>
@@ -41,7 +41,7 @@ class Login extends Component {
                 <input onChange={this.handleInputChange} className="login__input" name="password" type="password" required></input>
                 <label className="floating-label" htmlFor="password">Your password</label>
               </div>
-              <button onClick={this.handleLoginSubmit} className="login__button">Log in</button>
+              <button className="login__button">Log in</button>
               <Link to="/register" className="login__link">Register</Link>
             </form>
         </div>

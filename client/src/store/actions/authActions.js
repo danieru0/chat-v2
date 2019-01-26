@@ -23,6 +23,7 @@ export const login = (credentials) => {
             username: credentials.username,
             password: credentials.password
         }).then(() => {
+
             dispatch({
                 type: 'LOGIN_SUCCESS',
             });
@@ -30,4 +31,19 @@ export const login = (credentials) => {
             console.log(err);
         })
     }
-} 
+}
+
+export const register = (credentials) => {
+    return dispatch => {
+        axios.post('/api/register', {
+            username: credentials.username,
+            password: credentials.password
+        }).then(() => {
+            dispatch({
+                type: 'REGISTER_SUCCESS'
+            });
+        }).catch(err => {
+            console.log(err);
+        })
+    }
+}

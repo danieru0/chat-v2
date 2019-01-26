@@ -1,7 +1,9 @@
 const initState = {
     token: false,
-    authError: 'XD',
-    tokenLoading: true
+    tokenLoading: true,
+    loginError: 'XD',
+    registerSuccess: false,
+    registerError: 'FF'
 }
 
 export default (state = initState, action) => {
@@ -27,6 +29,11 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 token: true
+            }
+        case 'REGISTER_SUCCESS':
+            return {
+                ...state,
+                registerSuccess: true
             }
         default: return state;
     }
