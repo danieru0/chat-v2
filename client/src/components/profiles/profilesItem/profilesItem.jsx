@@ -6,10 +6,11 @@ import './profilesItem.css';
 class ProfilesItem extends Component {
 
     render() {
+        const { nick, avatar } = this.props;
         return (
-            <Link to="profiles/dupa" className="profiles__item">
-                <img className="profiles__item--avatar" alt="" src="https://www.w3schools.com/howto/img_avatar.png"></img>
-                <p className="profiles__item--nick">Irene iwicowi</p>
+            <Link to={"profiles/"+nick} className="profiles__item">
+                <img className="profiles__item--avatar" alt="" src={avatar}></img>
+                <p className="profiles__item--nick">{nick}</p>
             </Link>
         );
     }

@@ -7,7 +7,7 @@ class searchBar extends Component {
     render() {
         return (
             <div className="profiles__searchBar">
-                <input className="profiles__searchBar--input" type="text" placeholder="Search people..."></input>
+                <input onChange={this.props.onChange} name="searchValue" className="profiles__searchBar--input" type="text" placeholder="Search people..."></input>
             </div>
         );
     }
