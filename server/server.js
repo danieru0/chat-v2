@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
+require('./routes/profiles')(app);
 require('./routes/auth')(app);
 
 mongoose.Promise = global.Promise;

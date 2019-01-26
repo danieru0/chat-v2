@@ -8,6 +8,7 @@ const User = new Schema({
     username: String,
     password: String,
     avatar: String,
+    description: String
 });
 
 User.pre('save', function(next) {
