@@ -12,6 +12,7 @@
 
 .nav__menu--item {
     border-left: 10px solid transparent;
+    transition: 0.2s;
 }
 
 .nav__menu--item.active {
@@ -35,6 +36,7 @@
     font-size: 28px;
     position: relative;
     left: -5px;
+    transition: 0.2s;
 }
 
 @media (max-width: 690px) {
