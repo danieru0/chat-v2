@@ -7,7 +7,7 @@ module.exports = function(app) {
 
     app.post('/api/register', function(req, res) {
         const { username, password } = req.body;
-        const user = new User({ username, password, avatar: 'https://www.w3schools.com/howto/img_avatar.png' });
+        const user = new User({ username, password, localization: 'Anonymous', description: 'Hello! My name is '+username, avatar: 'https://www.w3schools.com/howto/img_avatar.png' });
         user.save(err => {
             if (err) {
                 res.status(500).send("something went wrong");

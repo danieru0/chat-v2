@@ -2,7 +2,6 @@
     width: 250px;
     height: 100px;
     display: flex;
-    justify-content: center;
     align-items: center;
     text-decoration: none;
     outline: none;
@@ -15,11 +14,13 @@
     height: 86px;
     border-radius: 50%;
     margin-right: 10px;
+    margin-left: 5px;
 }
 
 .profiles__item--nick {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
+    width: 150px;
     word-break: break-all;
     color: #000000;
 }

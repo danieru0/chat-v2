@@ -1,0 +1,79 @@
+.profilePage {
+    width: calc(100% - 100px);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profilePage div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profilePage--avatar {
+    width: 254px;
+    height: 254px;
+    border-radius: 50%;
+}
+
+.profilePage--nick {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.profilePage--localization {
+    font-size: 22px;
+    margin-top: 0px;
+}
+
+.profilePage--description {
+    font-size: 18px;
+    background: #f6f7f9;
+    width: 500px;
+    height: 200px;
+    padding: 5px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.profilePage--btn {
+    border: none;
+    background: #ebecf0;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ebecf0;
+    transition: 0.2s;
+    margin-top: 15px;
+
+}
+
+.login__button.profilePage--btn,
+.profilePage--btn:hover {
+    background: #f6f7f9;
+}
+
+@media (max-width: 690px) {
+    .profilePage {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-width: 610px) {
+    .profilePage--description {
+        width: 80%;
+    }
+}
+
+@media (max-width: 375px) {
+    .profilePage--avatar {
+        width: 200px;
+        height: 200px;
+    }
+}
