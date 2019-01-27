@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import socket from '../../socket/socket';
+
 import { getSearchProfiles } from '../../store/actions/profileActions';
 
 import './profilePage.css';
@@ -9,6 +11,10 @@ class profilePage extends Component {
 
     componentDidMount() {
         this.props.getSearchProfiles(this.props.match.params.nick);
+    }
+
+    handleSendButton = e => {
+        socket.emit('createNewChat', e.target.dataset.nick);
     }
 
     render() {
@@ -24,7 +30,7 @@ class profilePage extends Component {
                                     <p className="profilePage--nick">{item.username}</p>
                                     <p className="profilePage--localization">{item.localization}</p>
                                     <p className="profilePage--description">{item.description}</p>
-                                    <button className="profilePage--btn">Send message</button>
+                                    <button data-nick={item.username} onClick={this.handleSendButton} className="profilePage--btn">Send message</button>
                                 </div>
                             )
                         })

@@ -28,9 +28,13 @@ const socketRoute = require('./routes/socket');
 const jwt = require('jsonwebtoken');
 const secret = require('./config/secret');
 
+let activeUsers = [];
+
 io.use(function(socket, next) {
     if (socket.request.headers.cookie) {
-        let token = socket.request.headers.cookie.split('=')[1].split(';')[0];
+        let cookies = socket.request.headers.cookie;
+        let tokenFromCookies = cookies.substring(cookies.indexOf('token'));
+        let token = tokenFromCookies.split('=')[1].split(';')[0];
         if (token) {
             jwt.verify(token, secret, function(err, decoded) {
                 if (!err) {
@@ -43,9 +47,17 @@ io.use(function(socket, next) {
 })
 .on('connection', (socket) => {
 
-    console.log(socket.username);
-    console.log(socket.id);
+    activeUsers.push({
+        [socket.username]: socket.id
+    });
 
-    socket.on('lol', socketRoute.something(socket));
+    socket.on('createNewChat', socketRoute.createNewChat(socket, activeUsers));
+
+    socket.on('getUserChats', socketRoute.getUserChats(socket));
+
+    socket.on('disconnect', () => {
+        let i = activeUsers.indexOf(socket);
+        activeUsers.splice(i, 1);
+    });
 
 });

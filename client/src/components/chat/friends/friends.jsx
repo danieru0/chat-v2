@@ -18,6 +18,25 @@ class Friends extends Component {
   }
 
   render() {
+    const { chats, name, avatars } = this.props;
+    let chatUsernames = [];
+    let chatArray = [];
+    if (chats || name) {
+      chats.map(item => {
+        item.admins.map(item => {
+          if (item.username === name) {
+            return ''
+          }
+          return (
+            chatUsernames.push(item.username), chatArray.push({
+              name: item.username
+            })
+          )
+        });
+        return ''
+      });
+    }
+
     return (
         <>
           <button onClick={this.showFriendsMenu} className={this.state.friendsMenuShow ? "friends__button--mobile active" : "friends__button--mobile"}>
@@ -25,10 +44,17 @@ class Friends extends Component {
           </button>
           <div className={this.state.friendsMenuShow ? "friends active" : "friends"}>
             <SearchFriends />
-            <FriendsItem userNick="Anfisa Novikova" userLastMessage="I really like the colour but can you change it to be..." userLastMessageTime="11:39" userAvatar="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397_960_720.png" />
-            <FriendsItem userNick="Kent Smith" userLastMessage="Use what happens naturally." userLastMessageTime="10:15" userAvatar="https://www.w3schools.com/howto/img_avatar.png" />
-            <FriendsItem active={true} userNick="Irene Williams" userLastMessage="Is this the best we can do?" userLastMessageTime="09:52" userAvatar="https://upload.wikimedia.org/wikipedia/commons/c/c9/Avatar_2_Placeholder_DumDarac.png" />
-            <FriendsItem userNick="Dana Medina" userLastMessage="In an ideal world that sandwitch" userLastMessageTime="Yesterday" userAvatar="http://eliteadmin.themedesigner.in/demos/bt4/assets/images/users/1.jpg" />
+            {
+              chatArray.length !== 0 ? (
+                chatArray.map((item, i) => {
+                  return (
+                    <FriendsItem key={i} userNick={item.name} userLastMessage="in progress" userLastMessageTime="in progress" userAvatar={avatars[i]} />
+                  )
+                })
+              ) : (
+                ''
+              )
+            }
           </div>
         </>
     );
