@@ -9,6 +9,10 @@ import socket from '../../socket/socket';
 
 import './chat.css';
 
+socket.on('receiveChatMessage', (message, username) => {
+  console.log(username + ' ' + message);
+});
+
 class Chat extends Component {
   componentDidMount() {
     this.props.getUserChats(socket);
@@ -18,7 +22,7 @@ class Chat extends Component {
     return (
         <div className="chat">
             <Friends avatars={this.props.avatars} chats={this.props.chats} name={this.props.name} />
-            <Messanger name={this.props.name} avatars={this.props.avatars} chats={this.props.chats} activeChat={this.props.match.params.nick} />
+            <Messanger socket={socket} name={this.props.name} avatars={this.props.avatars} chats={this.props.chats} activeChat={this.props.match.params.nick} />
         </div>
     );
   }

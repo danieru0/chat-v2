@@ -55,7 +55,7 @@ io.use(function(socket, next) {
 
     socket.on('getUserChats', socketRoute.getUserChats(socket));
 
-    socket.on('test', socketRoute.test(socket));
+    socket.on('sendChatMessage', socketRoute.sendChatMessage(socket, io, activeUsers));
 
     socket.on('disconnect', () => {
         let i = activeUsers.indexOf(socket);

@@ -4,12 +4,14 @@ import './messangerProfileTop.css';
 
 class messangerProfileTop extends Component {
   render() {
+    const { avatar, activeChat } = this.props;
+    console.log(avatar);
     return (
         <div className="messanger__profileTop">
             <div className="messanger__profileTop--info">
-              <img className="messanger__profileTop--avatar" alt="" src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Avatar_2_Placeholder_DumDarac.png"></img>
+              <img className="messanger__profileTop--avatar" alt="" src={avatar}></img>
               <div className="messanger__profileTop--content">
-                <span className="messanger__profileTop--nick">Irene Williams</span>
+                <span className="messanger__profileTop--nick">{activeChat}</span>
               </div>
             </div>
             <div className="messanger__profileTop--settings">

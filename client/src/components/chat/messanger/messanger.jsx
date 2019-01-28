@@ -7,7 +7,7 @@ import './messanger.css';
 
 class Messanger extends Component {
   render() {
-    const { activeChat, chats, name } = this.props;
+    const { activeChat, chats, name, avatars } = this.props;
     let currentChat = '';
     if (chats) {
       chats.map(item => {
@@ -27,9 +27,11 @@ class Messanger extends Component {
         {
           currentChat ? (
             <>
-              <ProfileTop />
-              <MessangerChat messages={currentChat.messages} />
-              <MessangerSend />
+              <ProfileTop activeChat={activeChat} avatar={
+                avatars.find(el => Object.keys(el).toString() === activeChat) ? avatars.find(el => Object.keys(el).toString() === activeChat)[activeChat] : ''
+              } />
+              <MessangerChat socket={this.props.socket} messages={currentChat.messages} />
+              <MessangerSend socket={this.props.socket} activeChat={activeChat} />
             </>
           ) : (
             ''

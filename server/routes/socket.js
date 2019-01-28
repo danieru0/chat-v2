@@ -64,5 +64,16 @@ module.exports = {
                 }
             });
         }
+    },
+
+    sendChatMessage: function (socket, io, activeUsers) {
+        return function (user, message) {
+            /*activeUsers.map(item => {
+                if (Object.keys(item).toString() === user) {
+                    let socketId = Object.keys(item).map(value => item[value]);
+                    io.to(socketId).emit('receiveChatMessage', message, socket.username);
+                }
+            })*/
+        }
     }
 }

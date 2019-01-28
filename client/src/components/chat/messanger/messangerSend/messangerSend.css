@@ -6,11 +6,16 @@
     align-items: center;
 }
 
+.messanger__send--form {
+    width: 80%;
+    height: 70%;
+}
+
 .messanger__send--input {
     border: none;
     outline: none;
     width: 80%;
-    height: 70%;
+    height: 100%;
     font-family: 'Lato';
     outline: none;
     box-sizing: border-box;

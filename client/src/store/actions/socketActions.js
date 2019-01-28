@@ -11,3 +11,9 @@ export const getUserChats = socket => {
         });
     }
 }
+
+export const sendChatMessage = (socket, user, message) => {
+    return dispatch => {
+        socket.emit('sendChatMessage', user, message);
+    }
+}
