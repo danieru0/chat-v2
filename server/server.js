@@ -55,6 +55,8 @@ io.use(function(socket, next) {
 
     socket.on('getUserChats', socketRoute.getUserChats(socket));
 
+    socket.on('test', socketRoute.test(socket));
+
     socket.on('disconnect', () => {
         let i = activeUsers.indexOf(socket);
         activeUsers.splice(i, 1);

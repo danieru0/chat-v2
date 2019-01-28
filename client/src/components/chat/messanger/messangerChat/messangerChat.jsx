@@ -11,18 +11,18 @@ class messangerChat extends Component {
   }
 
   render() {
+    const { messages } = this.props;
+    //<MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
+    //<MessageFriend text="siema eniu ziomeczku mój" />
     return (
         <div id="messanger-chat" className="messanger__chat">
-          <MessageFriend text="siema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mójsiema eniu ziomeczku mój" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDwefewfwefDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDwefwefDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDwefwefwefDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
-          <MessageMe text="XDDDDDDDDDDDDDDDDDDDDDDDDD" />
+          {
+            messages.length !== 0 ? (
+              <h1>nwm</h1>
+            ) : (
+              ''
+            )
+          }
         </div>
     );
   }

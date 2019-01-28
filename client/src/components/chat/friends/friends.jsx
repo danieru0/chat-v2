@@ -5,7 +5,6 @@ import FriendsItem from './friendsItem/friendsItem';
 import './friends.css';
 
 class Friends extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -19,21 +18,18 @@ class Friends extends Component {
 
   render() {
     const { chats, name, avatars } = this.props;
-    let chatUsernames = [];
     let chatArray = [];
-    if (chats || name) {
+    if (chats || name || avatars) {
       chats.map(item => {
         item.admins.map(item => {
-          if (item.username === name) {
-            return ''
-          }
-          return (
-            chatUsernames.push(item.username), chatArray.push({
+          if (item.username !== name) {
+            chatArray.push({
               name: item.username
             })
-          )
+          }
+          return '';
         });
-        return ''
+        return '';
       });
     }
 
@@ -48,7 +44,9 @@ class Friends extends Component {
               chatArray.length !== 0 ? (
                 chatArray.map((item, i) => {
                   return (
-                    <FriendsItem key={i} userNick={item.name} userLastMessage="in progress" userLastMessageTime="in progress" userAvatar={avatars[i]} />
+                    <FriendsItem key={i} userNick={item.name} userLastMessage="in progress" userLastMessageTime="in progress" userAvatar={
+                      avatars.find(el => Object.keys(el).toString() === item.name)? avatars.find(el => Object.keys(el).toString() === item.name)[item.name] : ''
+                    } />
                   )
                 })
               ) : (

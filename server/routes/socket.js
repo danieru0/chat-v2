@@ -2,12 +2,18 @@ const Chat = require('../models/chat');
 const User = require('../models/user');
 
 module.exports = {
+    test: function (socket) {
+        return function (data) {
+            console.log('lol');
+        }
+    },
+    
     createNewChat: function (socket, activeUsers) {
         return function (data) {
             let activeClient = socket.username;
             let clickedClient = data;
 
-            const chat = new Chat();
+            const chat = new Chat({ chatName: `${activeClient}/${clickedClient}` });
             chat.admins.push({
                 username: activeClient,
             });
@@ -26,13 +32,13 @@ module.exports = {
 
     getUserChats: function (socket) {
         return function (data) {
-            Chat.find({ "admins.username": socket.username }, function(err, chat) {
+            Chat.find({ "admins.username": socket.username }, function(err, chats) {
                 if (err) {
                     console.log(err);
                 } else {
                     let chatUsernames = [];
                     let usernamesAvatars = [];
-                    chat.map(item => {
+                    chats.map(item => {
                         item.admins.map(item => {
                             if (item.username !== socket.username) {
                                 chatUsernames.push(item.username);
@@ -42,14 +48,16 @@ module.exports = {
                     chatUsernames.map(item => {
                         User.find(
                             { "username" : { "$regex": item, "$options": "i" } }
-                        ).select('-password').exec(function(err, profile) {
+                        ).select('-password').exec((err, profile) => {
                             if (err) {
                                 console.log(err);
                             } else {
                                 profile.map(item => {
-                                    usernamesAvatars.push(item.avatar);
+                                    usernamesAvatars.push({
+                                        [item.username]: item.avatar 
+                                    });
                                 });
-                                socket.emit('getUserChatsResult', chat, socket.username, usernamesAvatars)
+                                socket.emit('getUserChatsResult', chats, socket.username, usernamesAvatars)
                             }
                         });
                     });

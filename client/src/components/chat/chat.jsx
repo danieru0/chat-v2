@@ -1,45 +1,35 @@
 import React, { Component } from 'react';
 import Friends from './friends/friends';
 import Messanger from './messanger/messanger';
+import { connect } from 'react-redux';
+
+import { getUserChats } from '../../store/actions/socketActions';
 
 import socket from '../../socket/socket';
 
 import './chat.css';
 
 class Chat extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chats: null,
-      username: null,
-      avatars: null
-    }
-  }
-
-  componentWillUnmount() {
-    this._mounted = false;
-  }
-
   componentDidMount() {
-    this._mounted = true;
-    socket.emit('getUserChats');
-    if (this._mounted) {
-      socket.on('getUserChatsResult', (chat, name, avatars) => {
-        if (this._mounted) {
-          this.setState({ chats: chat, username: name, avatars: avatars });
-        }
-      });
-    }
+    this.props.getUserChats(socket);
   }
 
   render() {
     return (
         <div className="chat">
-            <Friends avatars={this.state.avatars} chats={this.state.chats} name={this.state.username} />
-            <Messanger />
+            <Friends avatars={this.props.avatars} chats={this.props.chats} name={this.props.name} />
+            <Messanger name={this.props.name} avatars={this.props.avatars} chats={this.props.chats} activeChat={this.props.match.params.nick} />
         </div>
     );
   }
 }
 
-export default Chat;
+const mapStateToProps = state => {
+  return {
+    chats: state.socket.chats,
+    name: state.socket.name,
+    avatars: state.socket.avatars
+  }
+}
+
+export default connect(mapStateToProps, { getUserChats })(Chat);

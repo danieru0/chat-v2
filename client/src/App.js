@@ -21,6 +21,7 @@ class App extends Component {
           <Switch>
               <Route exact path="/" component={withoutAuth(Login)}/>
               <Route path="/register" component={withoutAuth(Register)}/>
+              <Route path="/chat/:nick" component={withAuth(Chat)}/>
               <Route path="/chat" component={withAuth(Chat)}/>
               <Route path="/profiles/:nick" component={withAuth(ProfilePage)}/>
               <Route path="/profiles" component={withAuth(Profiles)}/>
