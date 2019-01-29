@@ -5,7 +5,6 @@ import './messangerProfileTop.css';
 class messangerProfileTop extends Component {
   render() {
     const { avatar, activeChat } = this.props;
-    console.log(avatar);
     return (
         <div className="messanger__profileTop">
             <div className="messanger__profileTop--info">

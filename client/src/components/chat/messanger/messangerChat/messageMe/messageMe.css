@@ -14,6 +14,10 @@
     border-top-right-radius: 0px;
 }
 
+.chat__message-me:first-of-type {
+    margin-top: calc(auto + 20px);
+}
+
 @media (max-width: 1320px) {
     .chat__message-me {
         max-width: 400px;

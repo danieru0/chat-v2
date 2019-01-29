@@ -8,6 +8,5 @@
     flex-wrap: nowrap;
     padding-bottom: 30px;
     box-sizing: border-box;
-    align-items: flex-start;
     overflow-y: scroll;
 }

@@ -30,7 +30,7 @@ class Messanger extends Component {
               <ProfileTop activeChat={activeChat} avatar={
                 avatars.find(el => Object.keys(el).toString() === activeChat) ? avatars.find(el => Object.keys(el).toString() === activeChat)[activeChat] : ''
               } />
-              <MessangerChat socket={this.props.socket} messages={currentChat.messages} />
+              <MessangerChat name={this.props.name} socket={this.props.socket} messages={currentChat.messages} />
               <MessangerSend socket={this.props.socket} activeChat={activeChat} />
             </>
           ) : (

@@ -31,8 +31,8 @@ const secret = require('./config/secret');
 let activeUsers = [];
 
 io.use(function(socket, next) {
-    if (socket.request.headers.cookie) {
-        let cookies = socket.request.headers.cookie;
+    if (socket.handshake.headers.cookie) {
+        let cookies = socket.handshake.headers.cookie;
         let tokenFromCookies = cookies.substring(cookies.indexOf('token'));
         let token = tokenFromCookies.split('=')[1].split(';')[0];
         if (token) {

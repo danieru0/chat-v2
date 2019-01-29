@@ -23,7 +23,6 @@ export const login = (credentials) => {
             username: credentials.username,
             password: credentials.password
         }).then(() => {
-
             dispatch({
                 type: 'LOGIN_SUCCESS',
             });

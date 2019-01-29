@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import socket from '../../../socket/socket';
+
 import { login } from '../../../store/actions/authActions';
 
 import './login.css';
@@ -13,6 +15,10 @@ class Login extends Component {
       username: null,
       password: null
     }
+  }
+
+  componentWillUnmount() {
+    socket.disconnect();
   }
 
   handleInputChange = e => {

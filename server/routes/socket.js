@@ -74,6 +74,20 @@ module.exports = {
                     io.to(socketId).emit('receiveChatMessage', message, socket.username);
                 }
             })*/
+            
+            Chat.updateOne(
+                { "admins.username": { $all: [user, socket.username] } },
+                {
+                    "$push": {
+                        messages: {
+                            username: socket.username,
+                            message: message
+                        }
+                    }
+                }
+            ).then(data => {
+                console.log(data);
+            })
         }
     }
 }

@@ -15,6 +15,7 @@ socket.on('receiveChatMessage', (message, username) => {
 
 class Chat extends Component {
   componentDidMount() {
+    socket.connect();
     this.props.getUserChats(socket);
   }
 
