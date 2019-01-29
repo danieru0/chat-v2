@@ -15,6 +15,12 @@ class Chat extends Component {
     this.props.getUserChats(socket);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.nick !== this.props.match.params.nick) {
+      this.props.getUserChats(socket);
+    }
+  }
+
   render() {
     return (
         <div className="chat">

@@ -1,15 +1,17 @@
 const User = require('../models/user');
 
+const withAuth = require('../middlewares/withAuth');
+
 module.exports = function(app) {
 
-    app.get('/api/profiles', function(req, res) {
+    app.get('/api/profiles', withAuth, function(req, res) {
         if (Object.keys(req.query).length === 0) {
             User.find().select('-password').exec(function(err, profiles) {
                 if (err) {
                     console.log(err);
                     res.status(500).send('something went wrong');
                 } else {
-                    res.status(200).send(profiles);
+                    res.status(200).send({profiles: profiles});
                 }
             });
         } else {
@@ -20,7 +22,7 @@ module.exports = function(app) {
                     console.log(err);
                     res.status(500).send('something went wrong');
                 } else {
-                    res.status(200).send(profiles);
+                    res.status(200).send({profiles: profiles, username: req.username});
                 }
             });
         }

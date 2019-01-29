@@ -41,7 +41,7 @@ class Profiles extends Component {
                     <div className="profiles__wrapper">
                         {
                             profiles ? (
-                                profiles.data.map((item, i) => {
+                                profiles.data.profiles.map((item, i) => {
                                     return (
                                         <ProfilesItem key={i} nick={item.username} avatar={item.avatar} />
                                     )

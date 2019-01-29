@@ -28,9 +28,14 @@ class messangerChat extends Component {
     })
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     let chatElement = document.getElementById('messanger-chat');
     chatElement.scrollTop = chatElement.scrollHeight;
+    if (prevProps.activeChat !== this.props.activeChat) {
+      this.setState({
+        messagesFromSocket: []
+      })
+    }
   }
 
   render() {

@@ -66,9 +66,9 @@ module.exports = {
                 if (Object.keys(item).toString() === user) {
                     let socketId = Object.keys(item).map(value => item[value]);
                     io.to(socketId).emit('receiveChatMessage', message, socket.username);
-                    socket.emit('receiveChatMessage', message, socket.username);
                 }
             })
+            socket.emit('receiveChatMessage', message, socket.username);
 
             Chat.updateOne(
                 { "admins.username": { $all: [user, socket.username] } },

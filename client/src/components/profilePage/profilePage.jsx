@@ -23,14 +23,20 @@ class profilePage extends Component {
             <div className="profilePage">
                 {
                     profiles ? (
-                        profiles.data.map((item, i) => {
+                        profiles.data.profiles.map((item, i) => {
                             return (
                                 <div key={i}>
                                     <img className="profilePage--avatar" alt="" src={item.avatar}></img>
                                     <p className="profilePage--nick">{item.username}</p>
                                     <p className="profilePage--localization">{item.localization}</p>
                                     <p className="profilePage--description">{item.description}</p>
-                                    <button data-nick={item.username} onClick={this.handleSendButton} className="profilePage--btn">Send message</button>
+                                    {
+                                        profiles.data.username !== item.username ? (
+                                            <button data-nick={item.username} onClick={this.handleSendButton} className="profilePage--btn">Send message</button>
+                                        ) : (
+                                            ''
+                                        )
+                                    }
                                 </div>
                             )
                         })
