@@ -2,23 +2,34 @@ const Chat = require('../models/chat');
 const User = require('../models/user');
 
 module.exports = {
-    createNewChat: function (socket, activeUsers) {
+    createNewChat: function (socket) {
         return function (data) {
             let activeClient = socket.username;
             let clickedClient = data;
 
-            const chat = new Chat({ chatName: `${activeClient}/${clickedClient}` });
-            chat.admins.push({
-                username: activeClient,
-            });
-            chat.admins.push({
-                username: clickedClient
-            });
-            chat.save(err => {
+            Chat.find({ "admins.username": { $all: [activeClient, clickedClient] } }, function(err, result) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('saved');
+                    if (result.length !== 0) {
+                        socket.emit('redirectToChat');
+                    } else {
+                        const chat = new Chat({ chatName: `${activeClient}/${clickedClient}` });
+                        chat.admins.push({
+                            username: activeClient,
+                        });
+                        chat.admins.push({
+                            username: clickedClient
+                        });
+                        chat.save(err => {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                console.log('saved');
+                                socket.emit('redirectToChat');
+                            }
+                        })
+                    }
                 }
             })
         }

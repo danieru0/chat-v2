@@ -2,25 +2,40 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import socket from '../../socket/socket';
+
 import './nav.css';
 
 class Nav extends Component {
     constructor() {
         super();
         this.state = {
-            profiles: null,
-            chat: null,
-            settings: null
+            profiles: '',
+            chat: '',
+            settings: ''
         }
     }
 
     componentDidMount() {
         let link = this.props.location.pathname.split('/')[1];
         this.setState({ [link]: 'active' });
+        socket.on('redirectToChat', () => {
+            document.querySelector('.nav__menu--item.active').classList.remove('active');
+            this.setState({
+                profiles: '',
+                chat: 'active',
+                settings: ''
+            })
+        });
     }
 
     handleNavClick = e => {
         e.preventDefault();
+        this.setState({
+            profiles: '',
+            chat: '',
+            settings: ''
+        })
         document.querySelector('.nav__menu--item.active').classList.remove('active');
         if (e.target.nodeName === 'SPAN') {
             let link = e.target.parentNode.href.split('/')[3];

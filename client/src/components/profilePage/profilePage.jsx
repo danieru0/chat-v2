@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import socket from '../../socket/socket';
 
@@ -11,6 +12,9 @@ class profilePage extends Component {
 
     componentDidMount() {
         this.props.getSearchProfiles(this.props.match.params.nick);
+        socket.on('redirectToChat', () => {
+            this.props.history.push('/chat/'+this.props.match.params.nick);
+        });
     }
 
     handleSendButton = e => {
@@ -55,4 +59,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { getSearchProfiles })(profilePage);
+export default connect(mapStateToProps, { getSearchProfiles })(withRouter(profilePage));
