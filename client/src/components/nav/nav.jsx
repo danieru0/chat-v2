@@ -11,7 +11,7 @@ class Nav extends Component {
         super();
         this.state = {
             profiles: '',
-            chat: '',
+            chat: 'active',
             settings: ''
         }
     }

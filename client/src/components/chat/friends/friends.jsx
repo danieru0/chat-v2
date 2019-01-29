@@ -19,8 +19,12 @@ class Friends extends Component {
   render() {
     const { chats, name, avatars } = this.props;
     let chatArray = [];
+    let lastMessage = [];
     if (chats || name || avatars) {
       chats.map(item => {
+        lastMessage.push({
+          last: item.messages[Object.keys(item.messages)[Object.keys(item.messages).length-1]]
+        });
         item.admins.map(item => {
           if (item.username !== name) {
             chatArray.push({
@@ -44,7 +48,7 @@ class Friends extends Component {
               chatArray.length !== 0 ? (
                 chatArray.map((item, i) => {
                   return (
-                    <FriendsItem key={i} userNick={item.name} userLastMessage="in progress" userLastMessageTime="in progress" userAvatar={
+                    <FriendsItem userLastMessage={lastMessage[i].last.message} key={i} userNick={item.name} userLastMessageTime="in progress" userAvatar={
                       avatars.find(el => Object.keys(el).toString() === item.name)? avatars.find(el => Object.keys(el).toString() === item.name)[item.name] : ''
                     } />
                   )
