@@ -2,6 +2,7 @@
     width: calc(100% - 100px);
     height: 100vh;
     display: flex;
+    background: #e6e8ec;
 }
 
 @media (max-width: 690px) {

@@ -2,7 +2,7 @@ const Chat = require('../models/chat');
 const User = require('../models/user');
 
 module.exports = {
-    createNewChat: function (socket) {
+    createNewChat: function (socket, io, activeUsers) {
         return function (data) {
             let activeClient = socket.username;
             let clickedClient = data;
@@ -27,6 +27,12 @@ module.exports = {
                             } else {
                                 console.log('saved');
                                 socket.emit('redirectToChat');
+                                activeUsers.map(item => {
+                                    if (Object.keys(item).toString() === clickedClient) {
+                                        let socketId = Object.keys(item).map(value => item[value]);
+                                        io.to(socketId).emit('sendChatToClient');
+                                    }
+                                })
                             }
                         })
                     }

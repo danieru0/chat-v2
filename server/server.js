@@ -51,7 +51,7 @@ io.use(function(socket, next) {
         [socket.username]: socket.id
     });
 
-    socket.on('createNewChat', socketRoute.createNewChat(socket, activeUsers));
+    socket.on('createNewChat', socketRoute.createNewChat(socket, io, activeUsers));
 
     socket.on('getUserChats', socketRoute.getUserChats(socket));
 
