@@ -51,15 +51,14 @@ io.use(function(socket, next) {
         [socket.username]: socket.id
     });
 
+    socket.on('disconnect', () => {
+        delete activeUsers[socket.username];
+    });
+
     socket.on('createNewChat', socketRoute.createNewChat(socket, io, activeUsers));
 
     socket.on('getUserChats', socketRoute.getUserChats(socket));
 
     socket.on('sendChatMessage', socketRoute.sendChatMessage(socket, io, activeUsers));
-
-    socket.on('disconnect', () => {
-        let i = activeUsers.indexOf(socket);
-        activeUsers.splice(i, 1);
-    });
 
 });

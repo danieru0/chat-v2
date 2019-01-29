@@ -1,6 +1,5 @@
 export const getUserChats = socket => {
     return dispatch => {
-        console.log('why');
         socket.emit('getUserChats');
         socket.on('getUserChatsResult', (chats, name, avatars) => {
             dispatch({

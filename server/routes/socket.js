@@ -97,9 +97,7 @@ module.exports = {
                         }
                     }
                 }
-            ).then(data => {
-                console.log(data);
-            })
+            );
         }
     }
 }

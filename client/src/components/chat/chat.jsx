@@ -14,7 +14,6 @@ class Chat extends Component {
     socket.connect();
     this.props.getUserChats(socket);
     socket.on('sendChatToClient', () => {
-      console.log('SEND IT');
       this.props.getUserChats(socket);
     })
   }
