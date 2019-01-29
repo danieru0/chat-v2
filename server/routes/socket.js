@@ -2,12 +2,6 @@ const Chat = require('../models/chat');
 const User = require('../models/user');
 
 module.exports = {
-    test: function (socket) {
-        return function (data) {
-            console.log('lol');
-        }
-    },
-    
     createNewChat: function (socket, activeUsers) {
         return function (data) {
             let activeClient = socket.username;
@@ -68,13 +62,14 @@ module.exports = {
 
     sendChatMessage: function (socket, io, activeUsers) {
         return function (user, message) {
-            /*activeUsers.map(item => {
+            activeUsers.map(item => {
                 if (Object.keys(item).toString() === user) {
                     let socketId = Object.keys(item).map(value => item[value]);
                     io.to(socketId).emit('receiveChatMessage', message, socket.username);
+                    socket.emit('receiveChatMessage', message, socket.username);
                 }
-            })*/
-            
+            })
+
             Chat.updateOne(
                 { "admins.username": { $all: [user, socket.username] } },
                 {

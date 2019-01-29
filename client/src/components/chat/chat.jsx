@@ -9,10 +9,6 @@ import socket from '../../socket/socket';
 
 import './chat.css';
 
-socket.on('receiveChatMessage', (message, username) => {
-  console.log(username + ' ' + message);
-});
-
 class Chat extends Component {
   componentDidMount() {
     socket.connect();

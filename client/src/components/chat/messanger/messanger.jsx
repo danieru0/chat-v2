@@ -22,6 +22,7 @@ class Messanger extends Component {
          return '';
       });
     }
+
     return (
         <div className="messanger">
         {
