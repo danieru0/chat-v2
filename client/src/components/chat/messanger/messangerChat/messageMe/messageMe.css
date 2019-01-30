@@ -1,6 +1,7 @@
 .chat__message-me {
     width: auto;
     max-width: 600px;
+    word-break: break-all;
     height: auto;
     padding-left: 30px;
     padding-right: 30px;

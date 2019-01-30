@@ -8,12 +8,20 @@ class Friends extends Component {
   constructor() {
     super();
     this.state = {
-      friendsMenuShow: false
+      friendsMenuShow: false,
+      searchValue: null
     }
   }
 
   showFriendsMenu = () => {
     this.setState({ friendsMenuShow: !this.state.friendsMenuShow });
+  }
+
+  handleSearchSubmit = (e, searchValue) => {
+    e.preventDefault();
+    this.setState({
+      searchValue: searchValue
+    })
   }
 
   render() {
@@ -27,9 +35,17 @@ class Friends extends Component {
         });
         item.admins.map(item => {
           if (item.username !== name) {
-            chatArray.push({
-              name: item.username
-            })
+            if (this.state.searchValue) {
+              if (item.username === this.state.searchValue) {
+                chatArray.push({
+                  name: item.username
+                })
+              }
+            } else {
+              chatArray.push({
+                name: item.username
+              })
+            }
           }
           return '';
         });
@@ -43,7 +59,7 @@ class Friends extends Component {
             <span className="fa fa-arrow-right"></span>
           </button>
           <div className={this.state.friendsMenuShow ? "friends active" : "friends"}>
-            <SearchFriends />
+            <SearchFriends onSubmit={this.handleSearchSubmit} />
             {
               chatArray.length !== 0 ? (
                 chatArray.map((item, i) => {
