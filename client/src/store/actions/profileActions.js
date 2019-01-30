@@ -13,9 +13,9 @@ export const getAllProfiles = () => {
     }
 }
 
-export const getSearchProfiles = search => {
+export const getSearchProfiles = (search, specific) => {
     return dispatch => {
-        axios.get('/api/profiles?nick='+search).then(resp => {
+        axios.get('/api/profiles?nick='+search+'&specific='+specific).then(resp => {
             dispatch({
                 type: 'PROFILE_GET_SUCCESS',
                 data: resp

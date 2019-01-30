@@ -15,16 +15,29 @@ module.exports = function(app) {
                 }
             });
         } else {
-            User.find(
-                { "username": { "$regex": req.query.nick, "$options": "i" } }
-            ).select('-password').exec(function(err, profiles) {
-                if (err) {
-                    console.log(err);
-                    res.status(500).send('something went wrong');
-                } else {
-                    res.status(200).send({profiles: profiles, username: req.username});
-                }
-            });
+            if (req.query.specific == 'true') {
+                User.find(
+                    { "username": req.query.nick }
+                ).select('-password').exec(function(err, profiles) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send('something went wrong');
+                    } else {
+                        res.status(200).send({profiles: profiles, username: req.username});
+                    }
+                })
+            } else {
+                User.find(
+                    { "username": { "$regex": req.query.nick, "$options": "i" } }
+                ).select('-password').exec(function(err, profiles) {
+                    if (err) {
+                        console.log(err);
+                        res.status(500).send('something went wrong');
+                    } else {
+                        res.status(200).send({profiles: profiles, username: req.username});
+                    }
+                });
+            }
         }
     });
 }

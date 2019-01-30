@@ -11,7 +11,7 @@ import './profilePage.css';
 class profilePage extends Component {
 
     componentDidMount() {
-        this.props.getSearchProfiles(this.props.match.params.nick);
+        this.props.getSearchProfiles(this.props.match.params.nick, true);
         socket.on('redirectToChat', () => {
             this.props.history.push('/chat/'+this.props.match.params.nick);
         });

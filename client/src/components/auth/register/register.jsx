@@ -27,7 +27,7 @@ class Register extends Component {
     e.preventDefault();
     if (this.state.passwordFirst === this.state.passwordRepeat) {
       this.props.register({
-        username: this.state.username,
+        username: this.state.username.trim(),
         password: this.state.passwordFirst
       })
     }

@@ -30,9 +30,11 @@ class Friends extends Component {
     let lastMessage = [];
     if (chats || name || avatars) {
       chats.map(item => {
-        lastMessage.push({
-          last: item.messages[Object.keys(item.messages)[Object.keys(item.messages).length-1]]
-        });
+        if (item.messages.length !== 0) {
+          lastMessage.push({
+            last: item.messages[Object.keys(item.messages)[Object.keys(item.messages).length-1]]
+          });
+        }
         item.admins.map(item => {
           if (item.username !== name) {
             if (this.state.searchValue) {
@@ -64,7 +66,7 @@ class Friends extends Component {
               chatArray.length !== 0 ? (
                 chatArray.map((item, i) => {
                   return (
-                    <FriendsItem active={item.name === activeChat} userLastMessage={lastMessage[i].last.message} key={i} userNick={item.name} userLastMessageTime={lastMessage[i].last.time} userAvatar={
+                    <FriendsItem active={item.name === activeChat} userLastMessage={lastMessage[i] ? lastMessage[i].last.message : ''} key={i} userNick={item.name} userLastMessageTime={lastMessage[i] ? lastMessage[i].last.time : ''} userAvatar={
                       avatars.find(el => Object.keys(el).toString() === item.name) ? avatars.find(el => Object.keys(el).toString() === item.name)[item.name] : ''
                     } />
                   )

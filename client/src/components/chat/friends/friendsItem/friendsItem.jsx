@@ -12,10 +12,12 @@ class friendsItem extends Component {
             userLastMessage = userLastMessage.substring(0, 35)+'...';
         }
     }
-    if (moment(moment(userLastMessageTime).format('YYYY-MM-DD')).isBefore(moment().format('YYYY-MM-DD'))) {
-        userLastMessageTime = moment(userLastMessageTime).fromNow();
-    } else {
-        userLastMessageTime = moment(userLastMessageTime).format('hh:mm a');
+    if (userLastMessageTime) {
+        if (moment(moment(userLastMessageTime).format('YYYY-MM-DD')).isBefore(moment().format('YYYY-MM-DD'))) {
+            userLastMessageTime = moment(userLastMessageTime).fromNow();
+        } else {
+            userLastMessageTime = moment(userLastMessageTime).format('hh:mm a');
+        }
     }
     return (
         <Link to={"/chat/"+userNick} className={active ? "friends__item active" : "friends__item"}>

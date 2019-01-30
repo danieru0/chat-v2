@@ -27,7 +27,7 @@ class Profiles extends Component {
 
     handleProfileSearchSubmit = e => {
         e.preventDefault();
-        this.props.getSearchProfiles(this.state.searchValue);
+        this.props.getSearchProfiles(this.state.searchValue, false);
     }
 
     render() {
