@@ -27,7 +27,7 @@ class Chat extends Component {
   render() {
     return (
         <div className="chat">
-            <Friends avatars={this.props.avatars} chats={this.props.chats} name={this.props.name} />
+            <Friends activeChat={this.props.match.params.nick} avatars={this.props.avatars} chats={this.props.chats} name={this.props.name} />
             <Messanger socket={socket} name={this.props.name} avatars={this.props.avatars} chats={this.props.chats} activeChat={this.props.match.params.nick} />
         </div>
     );

@@ -7,8 +7,10 @@ import './friendsItem.css';
 class friendsItem extends Component {
   render() {
     let { userNick, userLastMessage, userLastMessageTime, userAvatar, active } = this.props;
-    if (userLastMessage.length > 55) {
-        userLastMessage = userLastMessage.substring(0, 35)+'...';
+    if (userLastMessage) {
+        if (userLastMessage.length > 55) {
+            userLastMessage = userLastMessage.substring(0, 35)+'...';
+        }
     }
     if (moment(moment(userLastMessageTime).format('YYYY-MM-DD')).isBefore(moment().format('YYYY-MM-DD'))) {
         userLastMessageTime = moment(userLastMessageTime).fromNow();
