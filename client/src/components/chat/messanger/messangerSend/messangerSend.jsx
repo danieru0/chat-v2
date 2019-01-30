@@ -19,7 +19,13 @@ class messangerSend extends Component {
 
   handleSendSubmit = e => {
     e.preventDefault();
-    this.props.sendChatMessage(this.props.socket, this.props.activeChat, this.state.message);
+    if (this.state.message && this.state.message.trim() !== '') {
+      this.props.sendChatMessage(this.props.socket, this.props.activeChat, this.state.message);
+      this.setState({ 
+        message: null
+      })
+      document.querySelector('.messanger__send--input').value = '';
+    }
   }
 
   render() {

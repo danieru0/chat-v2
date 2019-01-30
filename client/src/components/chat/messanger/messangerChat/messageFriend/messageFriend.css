@@ -16,7 +16,7 @@
 }
 
 .chat__message-friend:first-of-type {
-    margin-top: calc(auto + 20px);
+    margin-top: auto;
 }
 
 @media (max-width: 1320px) {
