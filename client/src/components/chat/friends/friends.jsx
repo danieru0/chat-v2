@@ -48,8 +48,8 @@ class Friends extends Component {
               chatArray.length !== 0 ? (
                 chatArray.map((item, i) => {
                   return (
-                    <FriendsItem userLastMessage={lastMessage[i].last.message} key={i} userNick={item.name} userLastMessageTime="in progress" userAvatar={
-                      avatars.find(el => Object.keys(el).toString() === item.name)? avatars.find(el => Object.keys(el).toString() === item.name)[item.name] : ''
+                    <FriendsItem userLastMessage={lastMessage[i].last.message} key={i} userNick={item.name} userLastMessageTime={lastMessage[i].last.time} userAvatar={
+                      avatars.find(el => Object.keys(el).toString() === item.name) ? avatars.find(el => Object.keys(el).toString() === item.name)[item.name] : ''
                     } />
                   )
                 })

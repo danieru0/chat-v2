@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import './friendsItem.css';
 
 class friendsItem extends Component {
   render() {
     let { userNick, userLastMessage, userLastMessageTime, userAvatar, active } = this.props;
-    console.log(userLastMessage);
+    if (moment(moment(userLastMessageTime).format('YYYY-MM-DD')).isBefore(moment().format('YYYY-MM-DD'))) {
+        userLastMessageTime = moment(userLastMessageTime).fromNow();
+    } else {
+        userLastMessageTime = moment(userLastMessageTime).format('hh:mm a');
+    }
     return (
         <Link to={"/chat/"+userNick} className={active ? "friends__item active" : "friends__item"}>
             <img className="friends__item--avatar" alt="" src={userAvatar}></img>
