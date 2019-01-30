@@ -24,13 +24,13 @@ module.exports = function(app) {
                 console.log(err);
                 res.status(500).send('something went wrong');
             } else if (!user) {
-                res.status(401).send('Incorrect email or password');
+                res.status(401).send('Incorrect username or password');
             } else {
                 user.isCorrectPassword(password, function(err, same) {
                     if (err) {
                         res.status(500).send('something went wrong');
                     } else if (!same) {
-                        res.status(401).send('Incorrect email or password');
+                        res.status(401).send('Incorrect username or password');
                     } else {
                         const payload = { username };
                         const token = jwt.sign(payload, secret, {

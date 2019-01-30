@@ -27,7 +27,10 @@ export const login = (credentials) => {
                 type: 'LOGIN_SUCCESS',
             });
         }).catch(err => {
-            console.log(err);
+            dispatch({
+                type: 'LOGIN_FAILURE',
+                message: err.response.data
+            })
         })
     }
 }

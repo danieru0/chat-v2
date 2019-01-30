@@ -1,7 +1,7 @@
 const initState = {
     token: false,
     tokenLoading: true,
-    loginError: 'XD',
+    loginError: null,
     registerSuccess: false,
     registerError: 'FF'
 }
@@ -29,6 +29,11 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 token: true
+            }
+        case 'LOGIN_FAILURE':
+            return {
+                ...state,
+                loginError: action.message
             }
         case 'REGISTER_SUCCESS':
             return {

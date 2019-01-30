@@ -39,6 +39,15 @@ class Login extends Component {
     return (
         <div className="login">
             <form onSubmit={this.handleLoginSubmit} className="login__form">
+              {
+                this.props.loginError ? (
+                  <div className="login__errors">
+                    <p className="login__errors--message">{this.props.loginError}</p>
+                  </div>
+                ) : (
+                  ''
+                )
+              }
               <div className="login__input--group">
                 <input onChange={this.handleInputChange} className="login__input" name="username" type="text" required></input>
                 <label className="floating-label" htmlFor="username">Your nick</label>
@@ -57,7 +66,7 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    authError: state.auth.authError
+    loginError: state.auth.loginError
   }
 }
 

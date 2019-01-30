@@ -13,7 +13,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     justify-content: center;
+}
+
+.login__errors {
+    position: absolute;
+    top: 25px;
+}
+
+.login__errors--message {
+    color: #ff0000;
+    font-weight: bold;
 }
 
 .login__input--group {

@@ -87,8 +87,6 @@ module.exports = {
             })
             socket.emit('receiveChatMessage', message, socket.username);
 
-            console.log(user, socket.username);
-
             Chat.updateOne(
                 { "admins.username": { $all: [user, socket.username] } },
                 {
