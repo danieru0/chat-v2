@@ -2,8 +2,7 @@ const initState = {
     token: false,
     tokenLoading: true,
     loginError: null,
-    registerSuccess: false,
-    registerError: 'FF'
+    registerSuccess: false
 }
 
 export default (state = initState, action) => {

@@ -1,17 +1,34 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const socket = require('socket.io');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './avatars')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname + '.png')
+    }
+})
+
+const upload = multer({ storage: storage });
 
 const app = express();
 
+const { static } = require('express');
+
+app.use('/avatars', express.static(path.join(__dirname, 'avatars')));
+//app.use('/avatars/', static('../avatars'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-require('./routes/profiles')(app);
+require('./routes/profiles')(app, upload);
 require('./routes/auth')(app);
 
 mongoose.Promise = global.Promise;

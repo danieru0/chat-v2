@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 const withAuth = require('../middlewares/withAuth');
 
-module.exports = function(app) {
+module.exports = function(app, upload) {
 
     app.get('/api/profiles', withAuth, function(req, res) {
         if (Object.keys(req.query).length === 0) {
@@ -39,5 +39,11 @@ module.exports = function(app) {
                 });
             }
         }
+    });
+
+    app.post('/api/profiles/uploadAvatar', withAuth, upload.single('avatar'), function(req, res) {
+        User.findOneAndUpdate({ "username": req.username }, { $set: { "avatar": `/avatars/${req.username}.png` } }, function(err, result) {
+            console.log(result);
+        })
     });
 }

@@ -6,6 +6,7 @@ import Login from './components/auth/login/login';
 import Register from './components/auth/register/register';
 import Profiles from './components/profiles/profiles';
 import ProfilePage from './components/profilePage/profilePage';
+import Settings from './components/settings/settings';
 
 import withAuth from './components/hoc/withAuth';
 import withoutAuth from './components/hoc/withoutAuth';
@@ -25,6 +26,7 @@ class App extends Component {
               <Route path="/chat" component={withAuth(Chat)}/>
               <Route path="/profiles/:nick" component={withAuth(ProfilePage)}/>
               <Route path="/profiles" component={withAuth(Profiles)}/>
+              <Route path="/settings" component={withAuth(Settings)}/>
           </Switch>
         </div>
       </BrowserRouter>
