@@ -1,5 +1,6 @@
 const initState = {
-    profilesData: null
+    profilesData: null,
+    profileUpdateSuccess: false
 }
 
 export default (state = initState, action) => {
@@ -7,6 +8,10 @@ export default (state = initState, action) => {
         case 'PROFILE_GET_SUCCESS':
             return {
                 profilesData: action.data
+            }
+        case 'PROFILE_UPDATE_SUCCESS':
+            return {
+                profileUpdateSuccess: true
             }
         default: return state;
     }

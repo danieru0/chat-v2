@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
         cb(null, './avatars')
     },
     filename: function (req, file, cb) {
-        cb(null, file.originalname + '.png')
+        cb(null, file.originalname + '.jpg')
     }
 })
 
@@ -19,10 +19,7 @@ const upload = multer({ storage: storage });
 
 const app = express();
 
-const { static } = require('express');
-
 app.use('/avatars', express.static(path.join(__dirname, 'avatars')));
-//app.use('/avatars/', static('../avatars'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

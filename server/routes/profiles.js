@@ -41,9 +41,23 @@ module.exports = function(app, upload) {
         }
     });
 
-    app.post('/api/profiles/uploadAvatar', withAuth, upload.single('avatar'), function(req, res) {
-        User.findOneAndUpdate({ "username": req.username }, { $set: { "avatar": `/avatars/${req.username}.png` } }, function(err, result) {
-            console.log(result);
-        })
+    app.post('/api/profiles/updateProfile', withAuth, upload.single('avatar'), function(req, res) {
+        let objForUpdate = {};
+        if (req.body.localization) objForUpdate.localization = req.body.localization;
+        if (req.body.description) objForUpdate.description = req.body.description
+
+        User.findOneAndUpdate( { "username": req.username }, {
+            $set: {
+                "avatar": `/avatars/${req.username}.jpg`
+            },
+            $set: objForUpdate
+        }, { useFindAndModify: false }, function(err) {
+            if (err) {
+                console.log(err);
+                res.status(500).send('something went wrong');
+            } else {
+                res.status(200).send('Profile updated!');
+            }
+        });
     });
 }

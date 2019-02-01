@@ -1,0 +1,161 @@
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 100px);
+}
+
+.settings__form {
+    width: 600px;
+    height: 600px;
+    background: #f6f7f9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.settings__form--avatar {
+    width: 154px;
+    height: 154px;
+    border-radius: 50%;
+}
+
+.settings__form--group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings__input--file {
+    width: 240px;
+    margin-top: 10px;
+}
+
+.settings__input {
+    width: 240px;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    background: #f6f7f9;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.settings__input:focus {
+    border-bottom: 2px solid #000000;
+}
+
+.settings__input::placeholder {
+    color: #000000;
+}
+
+.settings__input::-webkit-input-placeholder {
+    color: #000000;
+}
+
+.settings__input::-moz-placeholder {
+    color: #000000;
+}
+
+.settings__input:-ms-input-placeholder {
+    color: #000000;
+}
+
+.settings__input::-ms-input-placeholder {
+    color: #000000;
+}
+
+.settings__textarea {
+    resize: none;
+    width: 300px;
+    height: 200px;
+    outline: none;
+    border: none;
+    border: 1px solid #000000;
+    background: #f6f7f9;
+    box-sizing: border-box;
+    padding-top: 5px;
+    padding-left: 5px;
+    transition: 0.2s;
+}
+
+.settings__textarea:focus {
+    border: 2px solid #000000;
+}
+
+.settings__textarea::placeholder {
+    color: #000000;
+}
+
+.settings__textarea::-webkit-input-placeholder {
+    color: #000000;
+}
+
+.settings__textarea::-moz-placeholder {
+    color: #000000;
+}
+
+.settings__textarea:-ms-input-placeholder {
+    color: #000000;
+}
+
+.settings__textarea::-ms-input-placeholder {
+    color: #000000;
+}
+
+.settings__form--btn {
+    border: none;
+    background: #ffffff;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #ebecf0;
+    transition: 0.2s;
+}
+
+.settings__form--btn:focus,
+.settings__form--btn:hover {
+    background: #ebecf0;
+}
+
+@media (max-width: 765px) {
+    .settings__form {
+        width: 80%;
+    }
+}
+
+@media (max-width: 690px) {
+    .settings {
+        width: calc(100% - 60px);
+    }
+}
+
+@media (max-height: 617px) {
+    .settings {
+        overflow-y: scroll;
+        padding-top: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings__form--group {
+        width: 100%;
+    }
+    .settings__textarea {
+        width: 90%;
+    }
+
+    .settings__input {
+        width: 90%;
+    }
+
+    .settings__input--file {
+        width: 90%;
+    }
+}

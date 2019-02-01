@@ -28,7 +28,6 @@ class profilePage extends Component {
                 {
                     profiles ? (
                         profiles.data.profiles.map((item, i) => {
-                            console.log(item.avatar);
                             return (
                                 <div key={i}>
                                     <img className="profilePage--avatar" alt="" src={item.avatar}></img>
@@ -55,7 +54,6 @@ class profilePage extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         profiles: state.profiles.profilesData
     }

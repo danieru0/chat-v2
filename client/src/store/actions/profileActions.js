@@ -25,3 +25,31 @@ export const getSearchProfiles = (search, specific) => {
         })
     }
 }
+
+export const updateProfile = (localization, description, avatar) => {
+    return dispatch => {
+        if (avatar) {
+            axios.post('/api/profiles/updateProfile', avatar, {
+                localization: localization,
+                description: description
+            }).then(resp => {
+                dispatch({
+                    type: 'PROFILE_UPDATE_SUCCESS'
+                })
+            }).catch(err => {
+                console.log(err);
+            })
+        } else {
+            axios.post('/api/profiles/updateProfile', {
+                localization: localization,
+                description: description
+            }).then(resp => {
+                dispatch({
+                    type: 'PROFILE_UPDATE_SUCCESS'
+                })
+            }).catch(err => {
+                console.log(err);
+            });
+        }
+    }
+}
