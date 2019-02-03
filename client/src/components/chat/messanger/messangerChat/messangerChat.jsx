@@ -10,7 +10,7 @@ class messangerChat extends Component {
   constructor() {
     super();
     this.state = {
-      messagesFromSocket: []
+      messagesFromSocket: null
     }
   }
 
@@ -22,8 +22,11 @@ class messangerChat extends Component {
         message: message,
         username: username
       }
-      this.setState({
+      /*this.setState({
         messagesFromSocket: [...this.state.messagesFromSocket, newMessage]
+      })*/
+      this.setState({
+        messagesFromSocket: newMessage
       })
     });
   }
@@ -40,6 +43,9 @@ class messangerChat extends Component {
 
   render() {
     let { messages, name } = this.props;
+    if (this.state.messagesFromSocket) {
+      messages.push(this.state.messagesFromSocket);
+    }
     return (
         <div id="messanger-chat" className="messanger__chat">
           {
@@ -58,6 +64,8 @@ class messangerChat extends Component {
             )
           }
           {
+            //getting messages from socket
+            /*
             this.state.messagesFromSocket.length !== 0 ? (
               this.state.messagesFromSocket.map((item, i) => {
                 return (
@@ -70,7 +78,7 @@ class messangerChat extends Component {
               })
             ) : (
               ''
-            )
+            )*/
           }
         </div>
     );

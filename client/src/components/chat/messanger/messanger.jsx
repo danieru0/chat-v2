@@ -3,17 +3,17 @@ import ProfileTop from './messangerProfileTop/messangerProfileTop';
 import MessangerSend from './messangerSend/messangerSend';
 import MessangerChat from './messangerChat/messangerChat';
 import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { clearUserChats } from '../../../store/actions/socketActions';
 
 import './messanger.css';
 
 class Messanger extends Component {
 
   componentDidMount() {
-  }
-
-  componentDidUpdate() {
     this.props.socket.on('chatRemovedByOtherUser', deletedChat => {
-      if (this.props.location.pathname.split('/')[2] === deletedChat) {
+      if (window.location.pathname.split('/')[2] === deletedChat) {
         document.querySelector('.messanger__popup').classList.add('active');
       }
     })
@@ -23,7 +23,12 @@ class Messanger extends Component {
     if (nextProps.activeChat !== this.props.activeChat) {
       document.querySelector('.messanger__popup').classList.remove('active');
     }
+  }
 
+  handlePopupClick = e => {
+    e.preventDefault();
+    this.props.clearUserChats();
+    this.props.history.push('/');
   }
 
   render() {
@@ -47,7 +52,7 @@ class Messanger extends Component {
         <div className="messanger">
           <div className="messanger__popup">
             <p className="messanger__popup--text">Chat has been removed by a conversation partner!</p>
-            <Link to="/" className="messanger__popup--link">okey</Link>
+            <Link onClick={this.handlePopupClick} to="/" className="messanger__popup--link">okey</Link>
           </div>
           {
             currentChat ? (
@@ -67,4 +72,4 @@ class Messanger extends Component {
   }
 }
 
-export default withRouter(Messanger);
+export default connect(null, { clearUserChats })(withRouter(Messanger));
