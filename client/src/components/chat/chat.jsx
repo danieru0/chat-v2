@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Friends from './friends/friends';
 import Messanger from './messanger/messanger';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import { getUserChats } from '../../store/actions/socketActions';
+import { getUserChats, clearUserChats } from '../../store/actions/socketActions';
 
 import socket from '../../socket/socket';
 
@@ -13,9 +14,15 @@ class Chat extends Component {
   componentDidMount() {
     socket.connect();
     this.props.getUserChats(socket);
+
     socket.on('sendChatToClient', () => {
       this.props.getUserChats(socket);
-    })
+    });
+
+    socket.on('chatRemoved', () => {
+      this.props.clearUserChats();
+      this.props.history.push('/');
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -42,4 +49,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { getUserChats })(Chat);
+export default connect(mapStateToProps, { getUserChats, clearUserChats })(withRouter(Chat));

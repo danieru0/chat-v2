@@ -25,7 +25,7 @@ class messangerChat extends Component {
       this.setState({
         messagesFromSocket: [...this.state.messagesFromSocket, newMessage]
       })
-    })
+    });
   }
 
   componentDidUpdate(prevProps, prevState) {

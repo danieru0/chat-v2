@@ -101,5 +101,32 @@ module.exports = {
                 console.log(result);
             })
         }
+    },
+
+    removeChat: function (socket, io, activeUsers) {
+        return function (activeChat) {
+            // activeChat == person who removing chat
+            Chat.find({ "admins.username": { $all: [activeChat, socket.username] } }, function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    if (result.length !== 0) {
+                        Chat.findOneAndRemove({ "admins.username": { $all: [activeChat, socket.username] } }, { useFindAndModify: false }, function(err) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                activeUsers.map(item => {
+                                    if (Object.keys(item).toString() === activeChat) {
+                                        let socketId = Object.keys(item).map(value => item[value]);
+                                        io.to(socketId).emit('chatRemovedByOtherUser', socket.username);
+                                    }
+                                })
+                                socket.emit('chatRemoved');
+                            }
+                        })
+                    }
+                }
+            });
+        }
     }
 }

@@ -2,10 +2,30 @@ import React, { Component } from 'react';
 import ProfileTop from './messangerProfileTop/messangerProfileTop';
 import MessangerSend from './messangerSend/messangerSend';
 import MessangerChat from './messangerChat/messangerChat';
+import { Link, withRouter } from 'react-router-dom';
 
 import './messanger.css';
 
 class Messanger extends Component {
+
+  componentDidMount() {
+  }
+
+  componentDidUpdate() {
+    this.props.socket.on('chatRemovedByOtherUser', deletedChat => {
+      if (this.props.location.pathname.split('/')[2] === deletedChat) {
+        document.querySelector('.messanger__popup').classList.add('active');
+      }
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeChat !== this.props.activeChat) {
+      document.querySelector('.messanger__popup').classList.remove('active');
+    }
+
+  }
+
   render() {
     const { activeChat, chats, name, avatars } = this.props;
     let currentChat = '';
@@ -25,22 +45,26 @@ class Messanger extends Component {
 
     return (
         <div className="messanger">
-        {
-          currentChat ? (
-            <>
-              <ProfileTop activeChat={activeChat} avatar={
-                avatars.find(el => Object.keys(el).toString() === activeChat) ? avatars.find(el => Object.keys(el).toString() === activeChat)[activeChat] : ''
-              } />
-              <MessangerChat activeChat={activeChat} name={this.props.name} socket={this.props.socket} messages={currentChat.messages} />
-              <MessangerSend socket={this.props.socket} activeChat={activeChat} />
-            </>
-          ) : (
-            ''
-          )
-        }
+          <div className="messanger__popup">
+            <p className="messanger__popup--text">Chat has been removed by a conversation partner!</p>
+            <Link to="/" className="messanger__popup--link">okey</Link>
+          </div>
+          {
+            currentChat ? (
+              <>
+                <ProfileTop socket={this.props.socket} activeChat={activeChat} avatar={
+                  avatars.find(el => Object.keys(el).toString() === activeChat) ? avatars.find(el => Object.keys(el).toString() === activeChat)[activeChat] : ''
+                } />
+                <MessangerChat activeChat={activeChat} name={this.props.name} socket={this.props.socket} messages={currentChat.messages} />
+                <MessangerSend socket={this.props.socket} activeChat={activeChat} />
+              </>
+            ) : (
+              ''
+            )
+          }
         </div>
     );
   }
 }
 
-export default Messanger;
+export default withRouter(Messanger);

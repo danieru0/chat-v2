@@ -17,3 +17,11 @@ export const sendChatMessage = (socket, user, message) => {
         socket.emit('sendChatMessage', user, message);
     }
 }
+
+export const clearUserChats = () => {
+    return dispatch => {
+        dispatch({
+            type: 'CLEAR_CHATS'
+        })
+    }
+}

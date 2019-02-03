@@ -13,6 +13,11 @@ export default (state = initState, action) => {
                 name: action.name,
                 avatars: action.avatars
             }
+        case 'CLEAR_CHATS':
+            return {
+                ...state,
+                chats: null
+            }
         default: return state;
     }
 }

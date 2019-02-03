@@ -28,7 +28,7 @@ class Friends extends Component {
     const { chats, name, avatars, activeChat } = this.props;
     let chatArray = [];
     let lastMessage = [];
-    if (chats || name || avatars) {
+    if (chats && name && avatars) {
       chats.map(item => {
         if (item.messages.length !== 0) {
           lastMessage.push({

@@ -29,6 +29,13 @@ class Nav extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.token !== nextProps.token) {
+            let link = this.props.location.pathname.split('/')[1];
+            this.setState({ [link]: 'active' });
+        }
+    }
+
     handleNavClick = e => {
         e.preventDefault();
         this.setState({

@@ -75,4 +75,6 @@ io.use(function(socket, next) {
 
     socket.on('sendChatMessage', socketRoute.sendChatMessage(socket, io, activeUsers));
 
+    socket.on('removeChat', socketRoute.removeChat(socket, io, activeUsers));
+
 });
