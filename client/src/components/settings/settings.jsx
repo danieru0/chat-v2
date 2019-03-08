@@ -71,23 +71,31 @@ class Settings extends Component {
             <div className="settings">
                 {
                     profile ? (
-                        profile.data.profiles.map((item, i) => {
-                            return (
-                                <form key={i} className="settings__form" onSubmit={this.handleSettingsSubmit}>
-                                    <div className="settings__form--group">
-                                        <img className="settings__form--avatar" alt="" src={this.state.avatarImage ? this.state.avatarImage : item.avatar}></img>
-                                        <input onChange={this.handleFileChange} className="settings__input--file" type="file" accept="image/*"></input>
-                                    </div>
-                                    <div className="settings__form--group">
-                                        <input onChange={this.handleInputChange} name="localization" defaultValue={item.localization} className="settings__input" placeholder="Localization"></input>
-                                    </div>
-                                    <div className="settings__form--group">
-                                        <textarea onChange={this.handleInputChange} name="description" defaultValue={item.description} className="settings__textarea" placeholder="Description"></textarea>
-                                    </div>
-                                    <button className="settings__form--btn">Save</button>
-                                </form>
+                        profile.data.profiles.length !== 0 ? (
+                            profile.data.profiles[0].username === this.props.name ? (
+                                profile.data.profiles.map((item, i) => {
+                                    return (
+                                        <form key={i} className="settings__form" onSubmit={this.handleSettingsSubmit}>
+                                            <div className="settings__form--group">
+                                                <img className="settings__form--avatar" alt="" src={this.state.avatarImage ? this.state.avatarImage : item.avatar}></img>
+                                                <input onChange={this.handleFileChange} className="settings__input--file" type="file" accept="image/*"></input>
+                                            </div>
+                                            <div className="settings__form--group">
+                                                <input onChange={this.handleInputChange} name="localization" defaultValue={item.localization} className="settings__input" placeholder="Localization"></input>
+                                            </div>
+                                            <div className="settings__form--group">
+                                                <textarea onChange={this.handleInputChange} name="description" defaultValue={item.description} className="settings__textarea" placeholder="Description"></textarea>
+                                            </div>
+                                            <button className="settings__form--btn">Save</button>
+                                        </form>
+                                    )
+                                })   
+                            ) : (
+                                ''
                             )
-                        })
+                        ) : (
+                            ''
+                        )
                     ) : (
                         ''
                     )

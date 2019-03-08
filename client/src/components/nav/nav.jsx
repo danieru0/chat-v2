@@ -43,7 +43,9 @@ class Nav extends Component {
             chat: '',
             settings: ''
         })
-        document.querySelector('.nav__menu--item.active').classList.remove('active');
+        if (document.querySelector('.nav__menu--item.active')) {
+            document.querySelector('.nav__menu--item.active').classList.remove('active');
+        }
         if (e.target.nodeName === 'SPAN') {
             let link = e.target.parentNode.href.split('/')[3];
             this.props.history.push('/'+link);
