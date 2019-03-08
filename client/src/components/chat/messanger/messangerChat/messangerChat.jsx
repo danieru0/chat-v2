@@ -22,9 +22,6 @@ class messangerChat extends Component {
         message: message,
         username: username
       }
-      /*this.setState({
-        messagesFromSocket: [...this.state.messagesFromSocket, newMessage]
-      })*/
       this.setState({
         messagesFromSocket: newMessage
       })
@@ -36,7 +33,7 @@ class messangerChat extends Component {
     chatElement.scrollTop = chatElement.scrollHeight;
     if (prevProps.activeChat !== this.props.activeChat) {
       this.setState({
-        messagesFromSocket: []
+        messagesFromSocket: null
       })
     }
   }
@@ -62,23 +59,6 @@ class messangerChat extends Component {
             ) : (
               ''
             )
-          }
-          {
-            //getting messages from socket
-            /*
-            this.state.messagesFromSocket.length !== 0 ? (
-              this.state.messagesFromSocket.map((item, i) => {
-                return (
-                  item.username === name ? (
-                    <MessageMe key={i} text={item.message} /> 
-                  ) : (
-                    <MessageFriend key={i} text={item.message} />
-                  )
-                )
-              })
-            ) : (
-              ''
-            )*/
           }
         </div>
     );
