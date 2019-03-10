@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Linkify from 'react-linkify';
 
 import './messageMe.css';
 
@@ -13,7 +14,7 @@ class MessageMe extends Component {
             match ? (
               <iframe className="chat__message-me--iframe" title={text} src={'https://www.youtube.com/embed/'+match[1]} frameBorder="0" allow="accelerometer" allowFullScreen></iframe>
             ) : (
-              <p>{text}</p>
+              <p><Linkify>{text}</Linkify></p>
             )
           }
         </div>
