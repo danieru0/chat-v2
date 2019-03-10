@@ -107,7 +107,7 @@ class Settings extends Component {
 
 const mapStateToProps = state => {
     return {
-        name: state.socket.name,
+        name: state.profiles.profilesData ? state.profiles.profilesData.data.username : state.profiles.profilesData,
         profile: state.profiles.profilesData
     }
 }

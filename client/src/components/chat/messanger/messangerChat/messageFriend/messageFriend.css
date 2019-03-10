@@ -16,6 +16,12 @@
     border-top-left-radius: 0px;
 }
 
+.chat__message-friend--iframe {
+    padding: 25px 0;
+    width: 320px;
+    height: 260px;
+}
+
 .chat__message-friend:first-of-type {
     margin-top: auto;
 }
@@ -29,6 +35,11 @@
 @media (max-width: 1000px) {
     .chat__message-friend {
         max-width: 200px;
+    }
+
+    .chat__message-friend--iframe {
+        width: 100%;
+        height: auto;
     }
 }
 

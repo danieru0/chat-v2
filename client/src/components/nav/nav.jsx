@@ -42,9 +42,9 @@ class Nav extends Component {
             profiles: '',
             chat: '',
             settings: ''
-        })
+        });
         if (document.querySelector('.nav__menu--item.active')) {
-            document.querySelector('.nav__menu--item.active').classList.remove('active');
+            document.querySelector('.nav__menu--item.active').classList.remove('active');   
         }
         if (e.target.nodeName === 'SPAN') {
             let link = e.target.parentNode.href.split('/')[3];
