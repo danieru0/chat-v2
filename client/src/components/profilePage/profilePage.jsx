@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 import socket from '../../socket/socket';
 
@@ -23,6 +23,11 @@ class profilePage extends Component {
 
     render() {
         const { profiles } = this.props;
+        if (profiles) {
+            if (profiles.data.profiles.length === 0) {
+                return <Redirect to="/profiles"></Redirect>
+            }
+        }
         return (
             <div className="profilePage">
                 {
