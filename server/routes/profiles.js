@@ -44,14 +44,12 @@ module.exports = function(app, upload) {
     app.post('/api/profiles/updateProfile', withAuth, upload.single('avatar'), function(req, res) {
         let objForUpdate = {};
         if (req.body.localization) objForUpdate.localization = req.body.localization;
-        if (req.body.description) objForUpdate.description = req.body.description
+        if (req.body.description) objForUpdate.description = req.body.description;
+        if (req.file) objForUpdate.avatar = `/avatars/${req.username}.jpg`;
 
         User.findOneAndUpdate( { "username": req.username }, {
-            $set: {
-                "avatar": `/avatars/${req.username}.jpg`
-            },
             $set: objForUpdate
-        }, { useFindAndModify: false }, function(err) {
+        }, { useFindAndModify: false }, function(err, docs) {
             if (err) {
                 console.log(err);
                 res.status(500).send('something went wrong');
